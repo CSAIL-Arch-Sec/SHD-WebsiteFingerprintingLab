@@ -21,7 +21,7 @@ function measureOneLine() {
 function measureNLines() {
   let result = [];
 
-  // TODO: Exercise 2
+  // TODO: Exercise 1-1
 
   return result;
 }
