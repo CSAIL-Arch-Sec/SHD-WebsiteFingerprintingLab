@@ -17,8 +17,7 @@ function record() {
   // Save start timestamp
   start = performance.now();
 
-  // TODO (Exercise 8): Copy your solution from part 3
-  // TODO (Exercise 9): Optionally make changes to your part 3 solution if you need to
+  // TODO (Exercise 4-4): Copy your solution from part 3. Optionally make changes to your part 3 solution if you need to.
 
   // Once done recording, send result to main thread
   postMessage(JSON.stringify(T));
