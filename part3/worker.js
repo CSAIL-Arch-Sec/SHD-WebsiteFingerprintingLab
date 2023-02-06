@@ -17,7 +17,7 @@ function record() {
   // Save start timestamp
   start = performance.now();
 
-  // TODO (Exercise 7): Record data for TRACE_LENGTH seconds and save values to T.
+  // TODO (Exercise 3-1): Record data for TRACE_LENGTH seconds and save values to T.
 
   // Once done recording, send result to main thread
   postMessage(JSON.stringify(T));
