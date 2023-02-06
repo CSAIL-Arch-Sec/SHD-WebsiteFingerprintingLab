@@ -10,7 +10,7 @@ def eval():
 
 	# Re-train 10 times in order to reduce effects of randomness
 	for i in range(10):
-		### TODO: Exercise 5
+		### TODO: Exercise 2-4
 		### 1. Load data from traces file
 		### 2. Split data into X_train, X_test, y_train, y_test with train_test_split
 		### 3. Train classifier with X_train and y_train
@@ -20,7 +20,7 @@ def eval():
 		y_test_full.extend(y_test)
 		y_pred_full.extend(y_pred)
 
-	### TODO: Exercise 5 (continued)
+	### TODO: Exercise 2-4 (continued)
 	### 5. Print classification report using y_test_full and y_pred_full
 
 if __name__ == "__main__":
