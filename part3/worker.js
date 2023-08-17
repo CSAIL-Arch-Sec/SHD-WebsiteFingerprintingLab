@@ -1,7 +1,11 @@
-// Duration of your trace, in milliseconds
-let TRACE_LENGTH;
+// Number of sweep counts
+// TODO: Choose an appropriate value!
+let P;
 
-// Array of length TRACE_LENGTH with your trace's values
+// Number of elements in your trace
+let K = 5 * 1000 / P; 
+
+// Array of length K with your trace's values
 let T;
 
 // Value of performance.now() when you started recording your trace
@@ -9,7 +13,7 @@ let start;
 
 function record() {
   // Create empty array for saving trace values
-  T = new Array(TRACE_LENGTH);
+  T = new Array(K);
 
   // Fill array with -1 so we can be sure memory is allocated
   T.fill(-1, 0, T.length);
@@ -17,7 +21,7 @@ function record() {
   // Save start timestamp
   start = performance.now();
 
-  // TODO (Exercise 3-1): Record data for TRACE_LENGTH seconds and save values to T.
+  // TODO: Record data for 5 seconds and save values to T.
 
   // Once done recording, send result to main thread
   postMessage(JSON.stringify(T));
@@ -26,7 +30,6 @@ function record() {
 // DO NOT MODIFY BELOW THIS LINE -- PROVIDED BY COURSE STAFF
 self.onmessage = (e) => {
   if (e.data.type === "start") {
-    TRACE_LENGTH = e.data.trace_length;
     setTimeout(record, 0);
   }
 };

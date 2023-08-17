@@ -14,19 +14,14 @@ from selenium.webdriver.chrome.options import Options
 parser = argparse.ArgumentParser()
 parser.add_argument("--browser", type=str, choices=["chrome", "firefox", "safari"], default="chrome", help="Browser to run automation in.")
 parser.add_argument("--domains", type=str, default="google.com,youtube.com,baidu.com,facebook.com", help="Comma-separated list of domain names to collect traces from. Defaults to google.com,youtube.com,baidu.com,facebook.com")
-parser.add_argument("--enable_countermeasure", type=bool, default=False, help="Set to true to enable the countermeasure. Browser must be set to Chrome. Defaults to false.")
 parser.add_argument("--num_traces_per_domain", type=int, default=40, help="Number of traces to collect per domain.")
 parser.add_argument("--trace_length", type=int, default=5000, help="The length of each recorded trace, in milliseconds. Defaults to 5000.")
 
 required = parser.add_argument_group("required arguments")
 required.add_argument("--out_filename", type=str, required=True, help="Name of the output file to save traces to.")
-required.add_argument("--part", type=int, choices=[2, 3, 4], required=True, help="Set to the part of the lab you're working on.")
+required.add_argument("--part", type=int, choices=[2, 3], required=True, help="Set to the part of the lab you're working on.")
 
 opts = parser.parse_args()
-
-if opts.browser != "chrome" and opts.enable_countermeasure:
-    print("Browser must be set to Chrome in order to enable the countermeasure.")
-    sys.exit(1)
 
 if os.path.exists(opts.out_filename):
     print(f"WARNING: Data already exists at {opts.out_filename}. What do you want to do?")
@@ -39,11 +34,6 @@ if os.path.exists(opts.out_filename):
 
 # Start serving attacker app
 app = Flask(__name__)
-
-# Disable Flask logs
-os.environ["WERKZEUG_RUN_MAIN"] = "true"
-log = logging.getLogger("werkzeug")
-log.disabled = True
 
 @app.route("/")
 def root():
@@ -62,10 +52,6 @@ def get_browser(victim):
     if opts.browser == "chrome":
         chrome_opts = Options()
         chrome_opts.add_experimental_option("excludeSwitches", ["enable-automation"])
-
-        if opts.enable_countermeasure and victim:
-            # Victim has the extension enabled -- attacker does not
-            chrome_opts.add_extension("part4/extension.crx")
 
         return webdriver.Chrome(options=chrome_opts)
     elif opts.browser == "firefox":
