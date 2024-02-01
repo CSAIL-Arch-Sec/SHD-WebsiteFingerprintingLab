@@ -1,7 +1,7 @@
 const runs = 10;
 
 function measureOneLine() {
-  const LINE_SIZE = 16; // 64/sizeof(int)
+  const LINE_SIZE = 32; // 128/sizeof(int)
   let result = [];
 
   // Fill with -1 to ensure allocation

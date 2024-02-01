@@ -1,6 +1,6 @@
 // Number of sweep counts
-// TODO: Choose an appropriate value!
-let P;
+// TODO (Exercise 3-1): Choose an appropriate value!
+let P = 1000;
 
 // Number of elements in your trace
 let K = 5 * 1000 / P; 
@@ -21,7 +21,7 @@ function record() {
   // Save start timestamp
   start = performance.now();
 
-  // TODO: Record data for 5 seconds and save values to T.
+  // TODO (Exercise 3-1): Record data for 5 seconds and save values to T.
 
   // Once done recording, send result to main thread
   postMessage(JSON.stringify(T));
