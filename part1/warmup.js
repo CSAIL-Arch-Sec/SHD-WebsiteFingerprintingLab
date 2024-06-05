@@ -1,7 +1,7 @@
 const runs = 10;
 
 function measureOneLine() {
-  const LINE_SIZE = 32; // 128/sizeof(int)
+  const LINE_SIZE = 16; // 128/sizeof(double) Note that js treats all numbers as double
   let result = [];
 
   // Fill with -1 to ensure allocation
